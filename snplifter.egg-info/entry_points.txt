@@ -1,2 +1,0 @@
-[console_scripts]
-snplifter = snplifter.modules.cli_handles:run_liftover
