@@ -16,10 +16,25 @@ class LiftOver:
         self._add_liftover_chain()
 
     def _init_hail(self):
+
+        """
+        Initializes the LiftOver class with necessary parameters and setups Hail environment.
+
+        Args:
+            chain_file (str): Path to the chain file for liftover.
+            input_dir (str): Directory containing input data files for liftover.
+            output_dir (str): Directory where liftover output will be saved.
+            liftover_direction (str): Direction of liftover ('38to37' or '37to38').
+            phenotypes (list of str, optional): List of phenotype names to process. Defaults to None.
+        """
+        
         hl.stop()
         hl.init()
 
     def _add_liftover_chain(self):
+
+        """Initializes the Hail environment."""
+
         if self.liftover_direction == '38to37':
             rg_source = hl.get_reference("GRCh38")
             rg_target = hl.get_reference("GRCh37")
@@ -30,6 +45,15 @@ class LiftOver:
         rg_source.add_liftover(self.chain_file, rg_target)
 
     def _liftover_file(self, gwas_file, phenotype):
+
+        """
+        Performs the liftover operation for a single GWAS file.
+
+        Args:
+            gwas_file (str): Path to the GWAS data file.
+            phenotype (str): Name of the phenotype.
+        """
+
         ht = hl.import_table(gwas_file, impute=True)  # Using impute=True to guess the types of the fields
 
         # Standardize chromosome column name
@@ -73,6 +97,11 @@ class LiftOver:
         ht.export(output_file, delimiter='\t')
     
     def perform_liftover_for_phenotypes(self):
+         
+        """
+        Iterates over the specified phenotypes and performs the liftover operation for their respective GWAS data files.
+        """
+
         for phenotype in self.phenotypes:
             pattern = os.path.join(self.input_dir, f'{phenotype}*.txt')
             matching_files = glob.glob(pattern)
