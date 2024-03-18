@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: snplifter
+Version: 0.1.0
+Summary: SNP liftover tool for converting SNP coordinates between genome builds.
+Author: Hannah Nicholls
+Author-email: hannahnicholls@qmul.ac.uk
+Requires-Python: >=3.6
+License-File: LICENSE
