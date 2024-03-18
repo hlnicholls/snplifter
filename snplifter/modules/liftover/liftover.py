@@ -55,9 +55,14 @@ class LiftOver:
         target_genome = 'GRCh37' if self.liftover_direction == '38to37' else 'GRCh38'
         
         # Annotate table with source and target loci for liftover
-        print('Performing liftover...')
+        print(f'Performing liftover for {phenotype} SNPs...')
         ht = ht.annotate(locus_source=hl.parse_locus(ht['CHROM'] + ":" + hl.str(ht.POS), reference_genome=source_genome))
         ht = ht.annotate(locus_target=hl.liftover(ht.locus_source, target_genome, include_strand=False))
+        source_not_na_count = ht.aggregate(hl.agg.count_where(hl.is_defined(ht.locus_source)))
+        target_not_na_count = ht.aggregate(hl.agg.count_where(hl.is_defined(ht.locus_target)))
+
+        print(f"SNPs in locus_source: {source_not_na_count}")
+        print(f"SNPs successfully lifted over in locus_target: {target_not_na_count}")
         
         # Remove 'chr' prefix for standardized CHROM value after liftover
         ht = ht.annotate(CHROM=ht['CHROM'].replace('chr',''))
