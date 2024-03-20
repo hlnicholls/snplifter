@@ -1,5 +1,5 @@
 import argparse
-from snplifter.config_class import Config
+from snplifter.config_class import Config #Config placehodler incase of future methods additions
 from snplifter.modules.liftover.liftover import LiftOver
 
 def main():

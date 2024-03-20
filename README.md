@@ -37,8 +37,7 @@ options:
   --liftover_direction {38to37,37to38}
                         Direction of liftover (38to37 or 37to38).
   --phenotype_names PHENOTYPE_NAMES
-                        Comma-separated list of phenotype names to process. If not provided, all files in the input directory will be
-                        processed.
+                        Comma-separated list of phenotype names to process.
 ```
 
 

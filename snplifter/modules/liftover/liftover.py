@@ -115,7 +115,7 @@ def main():
     parser.add_argument('--output_dir', type=str, required=True, help='Directory where liftover output will be saved')
     parser.add_argument('--chain_file', type=str, required=True, help='Path to the chain file for liftover')
     parser.add_argument('--liftover_direction', type=str, required=True, choices=['38to37', '37to38'], help='Direction of liftover (38to37 or 37to38)')
-    parser.add_argument('--phenotype_names', type=str, help='Comma-separated list of phenotype names to process, if applicable')
+    parser.add_argument('--phenotype_names', type=str, help='Comma-separated list of phenotype names to process.')
 
     args = parser.parse_args()
     phenotype_names = args.phenotype_names.split(',') if args.phenotype_names else []
