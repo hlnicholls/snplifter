@@ -40,3 +40,10 @@ options:
                         Comma-separated list of phenotype names to process. If not provided, all files in the input directory will be
                         processed.
 ```
+
+
+### Running with Nextflow (as a test example only)
+
+```
+nextflow run run_pipeline.nf
+```
